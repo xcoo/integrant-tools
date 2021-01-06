@@ -1,5 +1,6 @@
 (defproject xcoo/integrant-tools "0.2.0"
   :description ""
+  :url "https://github.com/xcoo/integrant-tools"
   :license {}
   :dependencies [[integrant "0.8.0" :exclusions [org.clojure/clojure]]]
   :source-paths ["src"]
@@ -9,4 +10,5 @@
                    :global-vars {*warn-on-reflection* true}}
              :test {:resource-paths ["test-resources"]}
              :uberjar {:aot :all}}
-  :jar-exclusions [#".+?\.config\.clj"])
+  :jar-exclusions [#".+?\.config\.clj"]
+  :signing {:gpg-key "developer@xcoo.jp"})
