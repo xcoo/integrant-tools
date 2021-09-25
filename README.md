@@ -1,12 +1,10 @@
 # integrant-tools
 
-A Clojure library designed to ... well, that part is up to you.
+A library that makes integrant a little easier to use.
 
 ## Usage
 
-### Setup
-
-In order to use integrant-tools, you should change `dev.clj` like this:
+For example, you can write the following in `dev.clj`:
 
 ```clojure
 (ns dev
@@ -18,34 +16,39 @@ In order to use integrant-tools, you should change `dev.clj` like this:
 (integrant.repl/set-prep! #(ig-tools/init "config.edn" "local.edn"))
 ```
 
-### Abilities
+## Features
 
-#### ref
+### ref
 
-You can use `#ref` instead of `#ig/ref`.
-
-Example:
+You can use more simpler `#ref` instead of `#ig/ref`:
 
 ```clojure
 {:adapter/jetty {:port 8080, :handler #ref :handler/greet}
  :handler/greet {:name "Alice"}}
 ```
 
-#### def
+### def
 
-You can define variable by `[:def ]`. You don't need define any function.
+You can define a constant by `:def` such as `:duct/const`:
 
 ```clojure
-{[:def :foo/bar] "foo"}
+{[:def :my-app/config] {:port 8080 :host "localhost"}}
 ```
 
-#### env
+### env
 
-Resolve an environment variable by name. Optionally accepts a type for
-coercion, and a keyword option, `:or`, that provides a default value if the
-environment variable is missing.
+Just a `#duct/env` port:
 
 ```clojure
 {:adapter/jetty {:port #env ["PORT" Int :or 8080], :handler ref :handler/greet}
  :handler/greet {:name "Alice"}}
 ```
+
+# License
+
+Copyright 2020-2021 [Xcoo, Inc.][xcoo]
+
+Licensed under the [Apache License, Version 2.0][apache-license-2.0].
+
+[xcoo]: https://xcoo.com
+[apache-license-2.0]: http://www.apache.org/licenses/LICENSE-2.0.html
